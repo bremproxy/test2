@@ -2,7 +2,7 @@ package org.example.smartHome.options;
 
 public class Light implements DevicesOptions{
     public boolean indicator;
-    public boolean lightOn;
+    public boolean statusLight;
 
     public void indicator(){
         indicator = true;
@@ -10,10 +10,14 @@ public class Light implements DevicesOptions{
 
     }
 
-    public void setLight(){
-        lightOn = true;
+    public void setLightOn(){
+        statusLight = true;
         System.out.println("Свет горит");
     }
 
+    public void setLightOff(){
+        statusLight = false;
+        System.out.println("Свет не горит");
+    }
 
 }

@@ -40,14 +40,14 @@ public class Main {
                 lp.turnOn();
                 Light lg = new Light();
                 lg.indicator();
-                lg.setLight();
+                lg.setLightOn();
             } else if (validMusic.contains(input)) {
                 System.out.println("принято " + input + " включаю");
                 Music music = new Music();
                 music.indicator();
                 Column column = new Column();
                 column.turnOn();
-                music.playMusic();
+                music.playMusicOn();
             } else {
                 System.out.println("Неверная команда. Попробуйте снова.");
             }
