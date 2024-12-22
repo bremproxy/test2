@@ -8,4 +8,9 @@ public class Column implements SmartDevices{
         System.out.println("колонка включена");
     }
 
+    public void turnOff(){
+        statusEnabled = false;
+        System.out.println("колонка выключена");
+    }
+
 }

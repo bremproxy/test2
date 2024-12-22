@@ -10,6 +10,12 @@ public class Light implements DevicesOptions{
 
     }
 
+    public void indicatorOff(){
+        indicator = false;
+        System.out.println("лампочка не горит");
+
+    }
+
     public void setLightOn(){
         statusLight = true;
         System.out.println("Свет горит");

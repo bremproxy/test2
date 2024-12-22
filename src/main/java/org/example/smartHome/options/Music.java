@@ -10,6 +10,11 @@ public class Music implements DevicesOptions{
         System.out.println("лампочка горит");
 
     }
+    public void indicatorOff(){
+        indicator = false;
+        System.out.println("лампочка не горит");
+
+    }
 
     public void playMusicOn(){
         statusMusic = true;

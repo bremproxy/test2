@@ -20,10 +20,10 @@ public class Main {
         validLight.add("включи свет");
 
         Set<String> validMusic = new HashSet<>();
-        validMusic.add("Музыка");
-        validMusic.add("Включи музыку");
+        //validMusic.add("Музыка");
+        //validMusic.add("Включи музыку");
         validMusic.add("музыка");
-        validMusic.add("включи музыку");
+        validMusic.add("выключи музыку");
 
         Set<String> validVolume = new HashSet<>();
         validVolume.add("погромче");
@@ -38,34 +38,41 @@ public class Main {
         Column column = new Column();
 
         while (true) {
-            System.out.println("Привет, я могу включить свет или включить музыку, что вы хотете сделать?");
+            System.out.println("___________________\nПривет, я умный дом!\nТы можешь попросить меня:\nВключить свет\nВключить и выключить музыку\nИзменить громкость, узнать текущий уровень\n___________________\n");
             input = scanner.nextLine().trim().toLowerCase();
 
             if (input.equals("выход")) {
                 System.out.println("Программа завершена.");
                 break;
-            } if (validVolume.contains(input)) {
-                    System.out.println("Принято: " + input);
-                    if (input.contains("погромче")) {
-                        music.increaseVolume();
-                    } else if (input.contains("потише")) {
-                        music.decreaseVolume();
-                    } else {
-                        System.out.println("Текущая громкость: " + music.getVolume());
-                    }
-                } else if (validLight.contains(input)) {
+            }
+            if (validVolume.contains(input)) {
+                System.out.println("Принято: " + input);
+                if (input.contains("погромче")) {
+                    music.increaseVolume();
+                } else if (input.contains("потише")) {
+                    music.decreaseVolume();
+                } else {
+                    System.out.println("Текущая громкость: " + music.getVolume());
+                }
+            } else if (validLight.contains(input)) {
                 System.out.println("принято " + input + " включаю");
                 lamp.turnOn();
                 light.indicator();
                 light.setLightOn();
             } else if (validMusic.contains(input)) {
                 System.out.println("принято " + input + " включаю");
-                music.indicator();
-                column.turnOn();
-                music.playMusicOn();
+                if (input.contains("выключи музыку")) {
+                    music.playMusicOff();
+                    column.turnOff();
+                    music.indicatorOff();
+                } else if (input.contains("музыка")) {
+                    music.indicator();
+                    column.turnOn();
+                    music.playMusicOn();
+                }
             } else {
-                System.out.println("Неверная команда. Попробуйте снова.");
+                    System.out.println("Неверная команда. Попробуйте снова.");
+                }
             }
         }
     }
-}
