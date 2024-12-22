@@ -3,10 +3,10 @@ package org.example.smartHome.devices;
 import org.example.smartHome.options.Light;
 
 public class Lamp implements SmartDevices{
-    private boolean StatusEnabled;
+    private boolean statusEnabled;
 
     public void turnOn(){
-        StatusEnabled = true;
+        statusEnabled = true;
         System.out.println("лампа включена");
     }
 

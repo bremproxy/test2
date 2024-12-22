@@ -25,27 +25,32 @@ public class Main {
         validMusic.add("музыка");
         validMusic.add("включи музыку");
 
-        System.out.println("Привет, я могу включить свет или включить музыку, что вы хотете сделать?");
+        String input;
 
-        String input = scanner.nextLine().trim().toLowerCase();
+        while (true) {
+            System.out.println("Привет, я могу включить свет или включить музыку, что вы хотете сделать?");
+            input = scanner.nextLine().trim().toLowerCase();
 
-        if (validLight.contains(input)) {
-            System.out.println("принято " + input + " включаю");
-            Lamp lp = new Lamp();
-            lp.turnOn();
-            Light lg = new Light();
-            lg.lightIndicator();
-        } else if (validMusic.contains(input)) {
-            System.out.println("принято " + input + " включаю");
-            Music music = new Music();
-            music.MusicIndicator();
-            Column column = new Column();
-            column.turnOn();
-        } else {
-            System.out.println("Неверная команда. Попробуйте снова.");
+            if (input.equals("выход")) {
+                System.out.println("Программа завершена.");
+                break;
+            } if (validLight.contains(input)) {
+                System.out.println("принято " + input + " включаю");
+                Lamp lp = new Lamp();
+                lp.turnOn();
+                Light lg = new Light();
+                lg.indicator();
+                lg.setLight();
+            } else if (validMusic.contains(input)) {
+                System.out.println("принято " + input + " включаю");
+                Music music = new Music();
+                music.indicator();
+                Column column = new Column();
+                column.turnOn();
+                music.playMusic();
+            } else {
+                System.out.println("Неверная команда. Попробуйте снова.");
+            }
         }
-        scanner.close();
     }
-
-
 }

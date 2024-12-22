@@ -1,11 +1,19 @@
 package org.example.smartHome.options;
 
 public class Light implements DevicesOptions{
-    public boolean StatusLight;
+    public boolean indicator;
+    public boolean lightOn;
 
-    public void lightIndicator(){
-        StatusLight = true;
-        System.out.println("свет горит");
+    public void indicator(){
+        indicator = true;
+        System.out.println("лампочка горит");
 
     }
+
+    public void setLight(){
+        lightOn = true;
+        System.out.println("Свет горит");
+    }
+
+
 }
