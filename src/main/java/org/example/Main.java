@@ -25,7 +25,17 @@ public class Main {
         validMusic.add("музыка");
         validMusic.add("включи музыку");
 
+        Set<String> validVolume = new HashSet<>();
+        validVolume.add("погромче");
+        validVolume.add("потише");
+        validVolume.add("громкость");
+
         String input;
+
+        Music music = new Music();
+        Lamp lamp = new Lamp();
+        Light light = new Light();
+        Column column = new Column();
 
         while (true) {
             System.out.println("Привет, я могу включить свет или включить музыку, что вы хотете сделать?");
@@ -34,18 +44,23 @@ public class Main {
             if (input.equals("выход")) {
                 System.out.println("Программа завершена.");
                 break;
-            } if (validLight.contains(input)) {
+            } if (validVolume.contains(input)) {
+                    System.out.println("Принято: " + input);
+                    if (input.contains("погромче")) {
+                        music.increaseVolume();
+                    } else if (input.contains("потише")) {
+                        music.decreaseVolume();
+                    } else {
+                        System.out.println("Текущая громкость: " + music.getVolume());
+                    }
+                } else if (validLight.contains(input)) {
                 System.out.println("принято " + input + " включаю");
-                Lamp lp = new Lamp();
-                lp.turnOn();
-                Light lg = new Light();
-                lg.indicator();
-                lg.setLightOn();
+                lamp.turnOn();
+                light.indicator();
+                light.setLightOn();
             } else if (validMusic.contains(input)) {
                 System.out.println("принято " + input + " включаю");
-                Music music = new Music();
                 music.indicator();
-                Column column = new Column();
                 column.turnOn();
                 music.playMusicOn();
             } else {
