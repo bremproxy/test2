@@ -46,15 +46,34 @@ public class Main {
         Column column = new Column();
         Hoover hoover = new Hoover();
 
+        printWelcomeMessage();
 
         while (true) {
-            System.out.println("___________________\nПривет, я умный дом!\nТы можешь попросить меня:\nВключить свет\nВключить и выключить музыку\nИзменить громкость, узнать текущий уровень\nВкключить пылесос\nИнформация по комнатам\n___________________\n");
-            input = scanner.nextLine().trim().toLowerCase();
+
+            input = getUserInput(scanner);
 
             if (input.equals("выход")) {
                 System.out.println("Программа завершена.");
                 break;
             }
+            processCommand(input, validLight, validMusic, validVolume, arrRoom, validHover, music, lamp, light, column, hoover);
+        }
+    }
+
+    public static void printWelcomeMessage() {
+        System.out.println("___________________\nПривет, я умный дом!\nТы можешь попросить меня:\n" +
+                "Включить свет\nВключить и выключить музыку\nИзменить громкость, узнать текущий уровень\n" +
+                "Включить пылесос\nИнформация по комнатам\n___________________\n");
+    }
+
+    public static String getUserInput(Scanner scanner) {
+            System.out.print("Введите команду: ");
+            return scanner.nextLine().trim().toLowerCase();
+        }
+    public static void processCommand(String input, Set<String> validLight, Set<String> validMusic, Set<String> validVolume,
+                                      Set<String> arrRoom, Set<String> validHover, Music music, Lamp lamp, Light light,
+                                      Column column, Hoover hoover)
+    {
             if (validVolume.contains(input)) {
                 System.out.println("Принято: " + input);
                 if (input.contains("погромче")) {
@@ -92,4 +111,3 @@ public class Main {
                 }
             }
         }
-    }
