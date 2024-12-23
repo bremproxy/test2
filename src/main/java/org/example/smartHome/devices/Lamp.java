@@ -10,4 +10,9 @@ public class Lamp implements SmartDevices{
         System.out.println("лампа включена");
     }
 
+    public void turnOff(){
+        statusEnabled = false;
+        System.out.println("лампа выключена");
+    }
+
 }

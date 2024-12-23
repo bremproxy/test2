@@ -1,7 +1,9 @@
 package org.example;
 
 import org.example.smartHome.devices.Column;
+import org.example.smartHome.devices.Hoover;
 import org.example.smartHome.devices.Lamp;
+import org.example.smartHome.enums.Rooms;
 import org.example.smartHome.options.Light;
 import org.example.smartHome.options.Music;
 
@@ -30,15 +32,23 @@ public class Main {
         validVolume.add("потише");
         validVolume.add("громкость");
 
+        Set<String> arrRoom = new HashSet<>();
+        arrRoom.add("комнаты");
+
+        Set<String> validHover = new HashSet<>();
+        validHover.add("пылесос");
+
         String input;
 
         Music music = new Music();
         Lamp lamp = new Lamp();
         Light light = new Light();
         Column column = new Column();
+        Hoover hoover = new Hoover();
+
 
         while (true) {
-            System.out.println("___________________\nПривет, я умный дом!\nТы можешь попросить меня:\nВключить свет\nВключить и выключить музыку\nИзменить громкость, узнать текущий уровень\n___________________\n");
+            System.out.println("___________________\nПривет, я умный дом!\nТы можешь попросить меня:\nВключить свет\nВключить и выключить музыку\nИзменить громкость, узнать текущий уровень\nВкключить пылесос\nИнформация по комнатам\n___________________\n");
             input = scanner.nextLine().trim().toLowerCase();
 
             if (input.equals("выход")) {
@@ -55,12 +65,19 @@ public class Main {
                     System.out.println("Текущая громкость: " + music.getVolume());
                 }
             } else if (validLight.contains(input)) {
-                System.out.println("принято " + input + " включаю");
+                System.out.println("принято: " + input + " включаю");
                 lamp.turnOn();
                 light.indicator();
                 light.setLightOn();
+            } else if (arrRoom.contains(input)) {
+                System.out.println("принято: " + input + " вот список комнат");
+                Rooms.arrRoom();
+            } else if (validHover.contains(input)){
+                System.out.println("принято: " + input + " включаю");
+                hoover.turnOn();
+                light.indicator();
             } else if (validMusic.contains(input)) {
-                System.out.println("принято " + input + " включаю");
+                System.out.println("принято: " + input + " включаю");
                 if (input.contains("выключи музыку")) {
                     music.playMusicOff();
                     column.turnOff();
